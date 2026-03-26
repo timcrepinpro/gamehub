@@ -7,7 +7,7 @@ $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 echo "Login: $login, Email: $email, Password: $password, Confirm Password: $confirm_password";
 
-$pattern = '/.{8,}/'; // Au moins 8 caractères
+$pattern = "/^[a-zA-Z0-9]{4,}$/"; // Au moins 8 caractères
 
 if (preg_match($pattern, $password)) {
 echo "Mot de passe valide";
@@ -18,7 +18,7 @@ exit;
 
 if ($_POST['password']==$_POST['confirm_password']) {
 
-
+echo "Inscription réussie ! Bienvenue, $login.";
 }
 /*
 
