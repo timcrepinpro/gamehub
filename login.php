@@ -1,31 +1,31 @@
 <?php
 session_start();
 
+// Si l'utilisateur est déjà connecté, rediriger vers l'accueil
+if (isset($_SESSION['login'])) {
+    header("Location: index.php");
+    exit;
+}
 
-$_SESSION['login'] = $identifier;
-header("Location: index.php");
-exit;
-// 1. Récupérer les données
+// 1. Récupérer les données du formulaire
 $login = $_POST['identifier'] ?? '';
 $password = $_POST['password'] ?? '';
 
 // 2. Vérifier que les champs sont remplis
 if (empty($login) || empty($password)) {
-    echo "Erreur : champs manquants";
-    exit;
+    die("Erreur : Tous les champs sont obligatoires.");
 }
 
-// 3. Simulation (pas de base de données)
-if ($login == "admin" && $password == "1234") {
-
-    // 4. Sauvegarder dans la session
+// 3.  vérification 
+if (($login === "admin" || $login === "email") && $password === "1234") {
+    // 4. Sauvegarder le login dans la session
     $_SESSION['login'] = $login;
 
-    // 5. Redirection vers accueil
+    // 5. Rediriger vers l'accueil
     header("Location: index.php");
     exit;
-
 } else {
-    echo "Erreur : identifiants incorrects";
+    // Identifiants incorrects
+    echo "Erreur : Identifiants incorrects.";
 }
 ?>
