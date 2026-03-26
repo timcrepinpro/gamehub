@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,15 +22,27 @@
             <div class="collapse navbar-collapse" id="menuNavbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        
                         <a class="nav-link active" href="index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register.html">Inscription</a>
+                        <?php if (isset($_SESSION['login'])): ?>
+                            <p><?php echo htmlspecialchars($_SESSION['login']); ?></p>
+                        <?php endif; ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Connexion</a>
+                        <?php if (isset($_SESSION['login'])): ?>
+                            <a class="nav-link" href="logout.php">Déconnexion</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="login.html">Connexion</a>
+                        <?php endif; ?>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <?php if (!isset($_SESSION['login'])): ?>
+                            <a class="nav-link" href="register.html">Inscription</a>
+                        <?php endif; ?>
+                    </li>
+                </ul>   
             </div>
         </div>
     </nav>

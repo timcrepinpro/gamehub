@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -39,8 +42,9 @@
                 Découvrez une sélection de jeux vidéo et créez votre compte pour accéder à votre futur espace personnel.
             </p>
             <div class="mt-4">
-                <a href="register.html" class="btn btn-primary me-2">S'inscrire</a>
-                <a href="login.html" class="btn btn-outline-dark">Se connecter</a>
+                <?php if (isset($_SESSION['login'])): ?>
+                    <a class="nav-link" href="logout.php">Déconnexion</a>
+                    <a href="login.html" class="btn btn-outline-dark">Se connecter</a>
             </div>
         </div>
     </header>

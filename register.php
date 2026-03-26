@@ -36,11 +36,14 @@ if ($password !== $confirm_password) {
 
 }
 
-$_SESSION['login'] = '$login';
-$_SESSION['email'] = '$email';
-$_SESSION['password'] = '$password';
+$_SESSION['login'] = $login;
+$_SESSION['email'] = $email;
+$_SESSION['password'] = $password;
+echo $_SESSION['login'];
+echo $_SESSION['email'];
+echo $_SESSION['password'];
 
 // 7. Succès : afficher un message et rediriger vers la page de connexion
 echo "Inscription réussie ! Bienvenue, $login. Vous pouvez maintenant vous connecter.";
-header("Refresh: 0; url=login.html"); 
+header("Refresh: 5; url=index.php"); 
 ?>
