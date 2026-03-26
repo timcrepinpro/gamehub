@@ -35,7 +35,7 @@ if ($password !== $confirm_password) {
     die("Erreur : Les mots de passe ne correspondent pas.");
 }
 // 3.  vérification 
-if ($login === "admin" && $password === "1234") {
+if (($login === "nomdutilisateur" || $login === "email")&& $password === "Al3xlefou") {
     // 4. Sauvegarder le login dans la session
     $_SESSION['login'] = $login;
 }
