@@ -44,7 +44,11 @@ session_start();
             <div class="mt-4">
                 <?php if (isset($_SESSION['login'])): ?>
                     <a class="nav-link" href="logout.php">Déconnexion</a>
-                    <a href="login.html" class="btn btn-outline-dark">Se connecter</a>
+                     <p><?php echo htmlspecialchars($_SESSION['login']); ?></p>
+                <?php else: ?>
+                    <a class="nav-link" href="register.html">Inscription</a>
+                    <a class="nav-link" href="login.html">Connexion</a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
