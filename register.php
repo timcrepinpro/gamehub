@@ -19,6 +19,7 @@ exit;
 if ($_POST['password']==$_POST['confirm_password']) {
 
 echo "Inscription réussie ! Bienvenue, $login.";
+header("Location: login.html");
 }
 /*
 

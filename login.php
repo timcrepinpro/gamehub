@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+
+$_SESSION['login'] = $identifier;
+header("Location: index.php");
+exit;
 // 1. Récupérer les données
 $login = $_POST['identifier'] ?? '';
 $password = $_POST['password'] ?? '';
