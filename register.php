@@ -33,12 +33,13 @@ if (!preg_match($passwordPattern, $password)) {
 // 6. Vérifier que les mots de passe correspondent
 if ($password !== $confirm_password) {
     die("Erreur : Les mots de passe ne correspondent pas.");
+
 }
-// 3.  vérification 
-if (($login === "nomdutilisateur" || $login === "email")&& $password === "Al3xlefou") {
-    // 4. Sauvegarder le login dans la session
-    $_SESSION['login'] = $login;
-}
+
+$_SESSION['login'] = '$login';
+$_SESSION['email'] = '$email';
+$_SESSION['password'] = '$password';
+
 // 7. Succès : afficher un message et rediriger vers la page de connexion
 echo "Inscription réussie ! Bienvenue, $login. Vous pouvez maintenant vous connecter.";
 header("Refresh: 0; url=login.html"); 

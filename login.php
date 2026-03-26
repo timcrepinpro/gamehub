@@ -17,7 +17,7 @@ if (empty($login) || empty($password)) {
 }
 
 // 3.  vérification 
-if (($login === "nomdutilisateur" || $login === "email") && $password === "Al3xlefou") {
+if (($login === $_SESSION['login'] || $login === $_SESSION['login']) && $password === $_SESSION['password']) {
     // 4. Sauvegarder le login dans la session
     $_SESSION['login'] = $login;
 
