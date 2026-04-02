@@ -35,6 +35,7 @@ if ($password !== $confirm_password) {
     die("Erreur : Les mots de passe ne correspondent pas.");
 
 }
+$password = password_hash($password, PASSWORD_DEFAULT);
 
 $_SESSION['login'] = $login;
 $_SESSION['email'] = $email;
@@ -46,4 +47,11 @@ echo $_SESSION['password'];
 // 7. Succès : afficher un message et rediriger vers la page de connexion
 echo "Inscription réussie ! Bienvenue, $login. Vous pouvez maintenant vous connecter.";
 header("Refresh: 5; url=index.php"); 
+
+
+include 'db.php';
+
 ?>
+
+
+

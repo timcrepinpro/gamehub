@@ -17,7 +17,7 @@ if (empty($login) || empty($password)) {
 }
 
 // 3.  vérification 
-if (($login === $_SESSION['login'] || $login === $_SESSION['login']) && $password === $_SESSION['password']) {
+if (($login === $_SESSION['login'] || $login === $_SESSION['login']) && password_hash($password, PASSWORD_DEFAULT) === $_SESSION['password']) {
     // 4. Sauvegarder le login dans la session
     $_SESSION['login'] = $login;
 
