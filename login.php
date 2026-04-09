@@ -16,16 +16,31 @@ if (empty($login) || empty($password)) {
     die("Erreur : Tous les champs sont obligatoires.");
 }
 
-// 3.  vérification 
-if (($login === $_SESSION['login'] || $login === $_SESSION['login']) && password_hash($password, PASSWORD_DEFAULT) === $_SESSION['password']) {
-    // 4. Sauvegarder le login dans la session
-    $_SESSION['login'] = $login;
+// 3. Inclure la connexion à la base de données
+include 'db.php';
 
-    // 5. Rediriger vers l'accueil
-    header("Location: index.php");
-    exit;
-} else {
-    // Identifiants incorrects
-    echo "Erreur : Identifiants incorrects.";
+try {
+    // 4. Récupérer l'utilisateur depuis la base de données
+    $sql = "SELECT * FROM utilisateurs WHERE login = :login";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':login', $login);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // 5. Vérifier si l'utilisateur existe et si le mot de passe est correct
+    if ($user && password_verify($password, $user['password'])) {
+        // 6. Sauvegarder le login dans la session
+        $_SESSION['login'] = $user['login'];
+
+        // 7. Rediriger vers l'accueil
+        header("Location: index.php");
+        exit;
+    } else {
+        // Identifiants incorrects
+        echo "Erreur : Identifiants incorrects.";
+    }
+} catch (PDOException $e) {
+    die("Erreur lors de la connexion : " . $e->getMessage());
 }
 ?>
